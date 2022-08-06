@@ -1,4 +1,4 @@
-//Constructor que crea los objetos que van a componer las operaciones bancarias realizadas por el usuario en el último mes y se utilizará en la creación de los futuros objetos generados a partir de la interacción del usuario con el sistema
+//Constructor que crea los objetos que van a  simular las operaciones bancarias realizadas por el usuario en el último mes
 class Operacion {
   constructor(fecha, hora, operacion, monto, saldo) {
     this.fecha = fecha;
@@ -9,7 +9,8 @@ class Operacion {
   }
 }
 
-//Creación de los objetos utilizando el constructor previamente creado
+//Creación de los objetos que simulan las oeraciones bancarias utilizando el constructor previamente creado
+
 //Depositos
 const deposito1 = new Operacion(
   "08/07/2022",
@@ -41,7 +42,6 @@ const pago1 = new Operacion(
   "$ 2.572.27",
   "$ 130.253.65"
 );
-
 const pago2 = new Operacion(
   "05/07/2022",
   "10:33",
@@ -49,7 +49,6 @@ const pago2 = new Operacion(
   "$ 5.362.87",
   "$ 127.156.65"
 );
-
 const pago3 = new Operacion(
   "17/07/2022",
   "08:55",
@@ -81,14 +80,39 @@ const extracc3 = new Operacion(
   "$ 115.343.00"
 );
 
-//Creacion del array contenedor de las operaciones bancarias realizadas por el usuario
+//Creacion del array de objetos contenedor de las operaciones bancarias simuladas
 const operaciones = [];
-//Codigo que agrega las operaciones creadas previamente al array
-operaciones.push(deposito1, deposito2, deposito3);
-operaciones.push(pago1, pago2, pago3);
-operaciones.push(extracc1, extracc2, extracc3);
+//Funcion que agrega las operaciones simuladas al array contenedor de objetos
+function agregarOperaciones(array, objeto) {
+  array.push(objeto);
+}
+//Codigo que agrega los objetos al array utilizando la función creada  para ello
+agregarOperaciones(
+  operaciones,
+  deposito1,
+  deposito2,
+  deposito3,
+  pago1,
+  pago2,
+  pago3,
+  extracc1,
+  extracc2,
+  extracc3
+);
 
-//Código que crea el array que con la información acerca de las cuentas que poseé el usuario y su correspondiente saldo
+//Funcion que permite ordenar por fecha de realización las operaciones simuladas
+function ordenar(fechas) {
+  fechas.sort((a, b) => {
+    if (a.fecha > b.fecha) {
+      return 1;
+    }
+    if (a.fecha < b.fecha) {
+      return -1;
+    }
+  });
+}
+
+//Código que crea un array de objetos literales que contiene la simulación de las cuentas bancarias que poseé el usuario y su correspondiente saldo
 const cuentas = [
   {
     tipo: "Caja de Ahorro",
@@ -113,29 +137,16 @@ const cuentas = [
   },
 ];
 
-//Funcion que permite ordenar las operaciones realizadas por fecha de realización
-function ordenar(fechas) {
-  fechas = operaciones.sort((a, b) => {
-    if (a.fecha > b.fecha) {
-      return 1;
-    }
-    if (a.fecha < b.fecha) {
-      return -1;
-    }
-  });
-}
-
-//Funcion que al consultar el saldo devuelve una tabla con el saldo de las diferentes cuentas que poseé el usuario
-function mostrarSaldo() {
-  //Codigo para cambiar el subtitulo del simulador
-  let text = document.querySelector(".text");
-  text.innerText = "Cuentas";
-  //Código que crea el elemento tabla y le asigna sus clases
-  let table = document.createElement("table");
-  table.className = "table table-hover";
-  //Código que crea la cabeza de la tabla
-  let tableHead = document.createElement("thead");
-  tableHead.innerHTML = `
+//Funcion que al consultar el saldo devuelve una tabla con el saldo de las cuentas bancarias simuladas
+//Codigo para cambiar el subtitulo del simulador
+let text = document.querySelector(".text");
+text.innerText = "Cuentas";
+//Código que crea el elemento tabla y le asigna sus clases
+let table = document.createElement("table");
+table.className = "table table-hover";
+//Código que crea la cabeza de la tabla
+let tableHead = document.createElement("thead");
+tableHead.innerHTML = `
     <thead>
       <tr>
         <th scope="col">Tipo de Cuenta</th>
@@ -146,26 +157,25 @@ function mostrarSaldo() {
       </tr>
     </thead>
   `;
-  //Codigo que crea el cuerpo de la tabla 
-  let tableBody = document.createElement("tbody");
-  tableBody.className = "table-group-divider";
-  //Codigo que recorre el array de cuentas creado anteriormente
-  for (const cuenta of cuentas) {
-    tableBody.innerHTML += `
-          <tr>
-              <td>${cuenta.tipo}</td>
-              <td>${cuenta.moneda}</td>
-              <td>${cuenta.cuenta}</td>
-              <td>${cuenta.identificador}</td>
-              <td>${cuenta.saldo}</td>
-          </tr>
-      `;
-  }
+//Codigo que crea el cuerpo de la tabla
+let tableBody = document.createElement("tbody");
+tableBody.className = "table-group-divider";
+//Codigo que recorre el array de cuentas creado anteriormente
+for (const cuenta of cuentas) {
+  tableBody.innerHTML += `
+        <tr>
+          <td>${cuenta.tipo}</td>
+          <td>${cuenta.moneda}</td>
+          <td>${cuenta.cuenta}</td>
+          <td>${cuenta.identificador}</td>
+          <td>${cuenta.saldo}</td>
+        </tr>
+    `;
 }
 //Codigo que agrega la cabeza y el cuerpo a la tabla creada anteriormente
 table.append(tableHead);
 table.append(tableBody);
-//Codigo que asigna a la tabla creada un padre 
+//Codigo que asigna a la tabla creada un padre
 let tableContainer = document.querySelector(".table-container");
 tableContainer.append(table);
 
@@ -194,14 +204,15 @@ function mostarMovimientos() {
 
   for (const operacion of ordenados) {
     tableBody.innerHTML += `
-          <tr>
-              <td>${operacion.fecha}</td>
-              <td>${operacion.hora}</td>
-              <td>${operacion.operacion}</td>
-              <td>${operacion.monto}</td>
-              <td>${operacion.saldo}</td>
-          </tr>
-      `;
+      <tr>
+        <td>${operacion.fecha}</td>
+        <td>${operacion.hora}</td>
+        <td>${operacion.operacion}</td>
+        <td>${operacion.monto}</td>
+        <td>${operacion.saldo}</td>
+      </tr>
+    `
+;
   }
 
   table.append(tableHead);
