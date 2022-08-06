@@ -8,7 +8,6 @@ class Operacion {
     this.saldo = saldo;
   }
 }
-
 //Creación de los objetos que simulan las oeraciones bancarias utilizando el constructor previamente creado
 //Depositos
 const deposito1 = new Operacion(
