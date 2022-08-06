@@ -10,7 +10,6 @@ class Operacion {
 }
 
 //Creación de los objetos que simulan las oeraciones bancarias utilizando el constructor previamente creado
-
 //Depositos
 const deposito1 = new Operacion(
   "08/07/2022",
@@ -33,7 +32,6 @@ const deposito3 = new Operacion(
   "$ 20.000.00",
   "$ 115.343.00"
 );
-
 //Pagos realizados
 const pago1 = new Operacion(
   "01/07/2022",
@@ -56,7 +54,6 @@ const pago3 = new Operacion(
   "$ 1.942.63",
   "$ 122.165.36"
 );
-
 //Extracciones realizadas
 const extracc1 = new Operacion(
   "14/07/2022",
@@ -101,8 +98,7 @@ const trans3 = new Operacion(
   "$ 20.000.00",
   "$ 123.343.00"
 );
-
-//Creacion del array de objetos contenedor de las operaciones bancarias simuladas
+//Creacion del array de objetos que va a  contener a las operaciones bancarias previamente simuladas
 const operaciones = [];
 //Funcion que agrega las operaciones simuladas al array contenedor de objetos
 function agregarOperaciones(array, objeto) {
@@ -124,8 +120,7 @@ agregarOperaciones(
   trans2,
   trans3
 );
-
-//Funcion que permite ordenar por fecha de realización las operaciones simuladas
+//Funcion que permite ordenar por fecha de realización a las operaciones simuladas
 function ordenar(fechas) {
   fechas.sort((a, b) => {
     if (a.fecha > b.fecha) {
@@ -136,7 +131,6 @@ function ordenar(fechas) {
     }
   });
 }
-
 //Código que crea un array de objetos literales que contiene la simulación de las cuentas bancarias que poseé el usuario y su correspondiente saldo
 const cuentas = [
   {
@@ -161,7 +155,6 @@ const cuentas = [
     saldo: "USD 5.000,00",
   },
 ];
-
 //Funcion que al consultar el saldo devuelve una tabla con el saldo de las cuentas bancarias simuladas
 //Codigo para cambiar el subtitulo del simulador
 let text = document.querySelector(".text");
@@ -247,4 +240,3 @@ function mostarMovimientos() {
   let tableContainer = document.querySelector(".table-container");
   tableContainer.append(table);
 }
-
