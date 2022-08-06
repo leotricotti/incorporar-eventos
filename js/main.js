@@ -204,14 +204,15 @@ table.append(tableBody);
 let tableContainer = document.querySelector(".table-container");
 tableContainer.append(table);
 
-//Ultimos Movimientos
+//Funcion que al consultar los movimientos devuelve una tabla con el saldo de las cuentas bancarias simuladas
 function mostarMovimientos() {
+  //Codigo para cambiar el subtitulo del simulador
   let text = document.querySelector(".text");
   text.innerText = "Ultimos Movimientos";
-
+  //Código que crea el elemento tabla y le asigna sus clases
   let table = document.createElement("table");
   table.className = "table table-hover";
-
+  //Código que crea la cabeza de la tabla
   let tableHead = document.createElement("thead");
   tableHead.innerHTML = `
     <thead>
@@ -224,9 +225,10 @@ function mostarMovimientos() {
       </tr>
     </thead>
   `;
+  //Codigo que crea el cuerpo de la tabla
   let tableBody = document.createElement("tbody");
   tableBody.className = "table-group-divider";
-
+  //Codigo que recorre el array de operaciones creado anteriormente
   for (const operacion of ordenados) {
     tableBody.innerHTML += `
       <tr>
@@ -238,9 +240,10 @@ function mostarMovimientos() {
       </tr>
     `;
   }
-
+  //Codigo que agrega la cabeza y el cuerpo a la tabla creada anteriormente
   table.append(tableHead);
   table.append(tableBody);
+  //Codigo que asigna a la tabla creada un padre
   let tableContainer = document.querySelector(".table-container");
   tableContainer.append(table);
 }
