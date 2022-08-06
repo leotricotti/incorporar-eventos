@@ -79,6 +79,28 @@ const extracc3 = new Operacion(
   "$ 20.000.00",
   "$ 115.343.00"
 );
+//Transferencias realizadas
+const trans1 = new Operacion(
+  "22/07/2022",
+  "18:55",
+  "Transferencia",
+  "$ 25.000.00",
+  "$ 95.343.00"
+);
+const trans2 = new Operacion(
+  "19/07/2022",
+  "12:34",
+  "Transferencia",
+  "$ 22.000.00",
+  "$ 144.343.00"
+);
+const trans3 = new Operacion(
+  "27/07/2022",
+  "12:18",
+  "Transferencias",
+  "$ 20.000.00",
+  "$ 123.343.00"
+);
 
 //Creacion del array de objetos contenedor de las operaciones bancarias simuladas
 const operaciones = [];
@@ -97,7 +119,10 @@ agregarOperaciones(
   pago3,
   extracc1,
   extracc2,
-  extracc3
+  extracc3,
+  trans1,
+  trans2,
+  trans3
 );
 
 //Funcion que permite ordenar por fecha de realización las operaciones simuladas
@@ -163,13 +188,13 @@ tableBody.className = "table-group-divider";
 //Codigo que recorre el array de cuentas creado anteriormente
 for (const cuenta of cuentas) {
   tableBody.innerHTML += `
-        <tr>
-          <td>${cuenta.tipo}</td>
-          <td>${cuenta.moneda}</td>
-          <td>${cuenta.cuenta}</td>
-          <td>${cuenta.identificador}</td>
-          <td>${cuenta.saldo}</td>
-        </tr>
+      <tr>
+        <td>${cuenta.tipo}</td>
+        <td>${cuenta.moneda}</td>
+        <td>${cuenta.cuenta}</td>
+        <td>${cuenta.identificador}</td>
+        <td>${cuenta.saldo}</td>
+      </tr>
     `;
 }
 //Codigo que agrega la cabeza y el cuerpo a la tabla creada anteriormente
@@ -211,8 +236,7 @@ function mostarMovimientos() {
         <td>${operacion.monto}</td>
         <td>${operacion.saldo}</td>
       </tr>
-    `
-;
+    `;
   }
 
   table.append(tableHead);
