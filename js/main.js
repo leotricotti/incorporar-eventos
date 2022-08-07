@@ -100,12 +100,7 @@ const trans3 = new Operacion(
 //Creacion del array de objetos que va a  contener a las operaciones bancarias previamente simuladas
 const operaciones = [];
 //Funcion que agrega las operaciones simuladas al array contenedor de objetos
-function agregarOperaciones(array, objeto) {
-  array.push(objeto);
-}
-//Codigo que agrega los objetos al array utilizando la función creada  para ello
-agregarOperaciones(
-  operaciones,
+operaciones.push(
   deposito1,
   deposito2,
   deposito3,
@@ -120,8 +115,8 @@ agregarOperaciones(
   trans3
 );
 //Funcion que permite ordenar por fecha de realización a las operaciones simuladas
-function ordenar(fechas) {
-  fechas.sort((a, b) => {
+let ordenados =
+  operaciones.sort((a, b) => {
     if (a.fecha > b.fecha) {
       return 1;
     }
@@ -129,7 +124,6 @@ function ordenar(fechas) {
       return -1;
     }
   });
-}
 //Código que crea un array de objetos literales que contiene la simulación de las cuentas bancarias que poseé el usuario y su correspondiente saldo
 const cuentas = [
   {
@@ -155,48 +149,53 @@ const cuentas = [
   },
 ];
 //Funcion que al consultar el saldo devuelve una tabla con el saldo de las cuentas bancarias simuladas
-//Codigo para cambiar el subtitulo del simulador
-let text = document.querySelector(".text");
-text.innerText = "Cuentas";
-//Código que crea el elemento tabla y le asigna sus clases
-let table = document.createElement("table");
-table.className = "table table-hover";
-//Código que crea la cabeza de la tabla
-let tableHead = document.createElement("thead");
-tableHead.innerHTML = `
-    <thead>
-      <tr>
-        <th scope="col">Tipo de Cuenta</th>
-        <th scope="col">Moneda</th>
-        <th scope="col">Cuenta</th>
-        <th scope="col">Identificacion</th>
-        <th scope="col">Saldo</th>
-      </tr>
-    </thead>
-  `;
-//Codigo que crea el cuerpo de la tabla
-let tableBody = document.createElement("tbody");
-tableBody.className = "table-group-divider";
-//Codigo que recorre el array de cuentas creado anteriormente
-for (const cuenta of cuentas) {
-  tableBody.innerHTML += `
-      <tr>
-        <td>${cuenta.tipo}</td>
-        <td>${cuenta.moneda}</td>
-        <td>${cuenta.cuenta}</td>
-        <td>${cuenta.identificador}</td>
-        <td>${cuenta.saldo}</td>
-      </tr>
+function mostarSaldo() {
+  //Codigo para cambiar el subtitulo del simulador
+  let text = document.querySelector(".text");
+  text.innerText = "Cuentas";
+  //Código que crea el elemento tabla y le asigna sus clases
+  let table = document.createElement("table");
+  table.className = "table table-hover";
+  //Código que crea la cabeza de la tabla
+  let tableHead = document.createElement("thead");
+  tableHead.innerHTML = `
+      <thead>
+        <tr>
+          <th scope="col">Tipo de Cuenta</th>
+          <th scope="col">Moneda</th>
+          <th scope="col">Cuenta</th>
+          <th scope="col">Identificacion</th>
+          <th scope="col">Saldo</th>
+        </tr>
+      </thead>
     `;
+  //Codigo que crea el cuerpo de la tabla
+  let tableBody = document.createElement("tbody");
+  tableBody.className = "table-group-divider";
+  //Codigo que recorre el array de cuentas creado anteriormente
+  for (const cuenta of cuentas) {
+    tableBody.innerHTML += `
+        <tr>
+          <td>${cuenta.tipo}</td>
+          <td>${cuenta.moneda}</td>
+          <td>${cuenta.cuenta}</td>
+          <td>${cuenta.identificador}</td>
+          <td>${cuenta.saldo}</td>
+        </tr>
+      `;
+  }
+  //Codigo que agrega la cabeza y el cuerpo a la tabla creada anteriormente
+  table.append(tableHead);
+  table.append(tableBody);
+  //Codigo que asigna a la tabla creada un padre
+  let tableContainer = document.querySelector(".table-container");
+  tableContainer.append(table);
 }
-//Codigo que agrega la cabeza y el cuerpo a la tabla creada anteriormente
-table.append(tableHead);
-table.append(tableBody);
-//Codigo que asigna a la tabla creada un padre
-let tableContainer = document.querySelector(".table-container");
-tableContainer.append(table);
 
-//Funcion que al consultar los movimientos devuelve una tabla con el saldo de las cuentas bancarias simuladas
+// //Funcion que al consultar los movimientos devuelve una tabla con el saldo de las cuentas bancarias simulada
+// let consultaMovimientos = document.getElementById("btn-movimientos");
+// consultaMovimientos.addEventListener("click", mostarMovimientos);
+
 function mostarMovimientos() {
   //Codigo para cambiar el subtitulo del simulador
   let text = document.querySelector(".text");
@@ -239,3 +238,6 @@ function mostarMovimientos() {
   let tableContainer = document.querySelector(".table-container");
   tableContainer.append(table);
 }
+
+mostarMovimientos();
+mostarSaldo();
