@@ -192,10 +192,7 @@ function mostarSaldo() {
   tableContainer.append(table);
 }
 
-// //Funcion que al consultar los movimientos devuelve una tabla con el saldo de las cuentas bancarias simulada
-// let consultaMovimientos = document.getElementById("btn-movimientos");
-// consultaMovimientos.addEventListener("click", mostarMovimientos);
-
+// //Funcion que al consultar los movimientos devuelve una tabla con el saldo de las cuentas bancarias simuladas
 function mostarMovimientos() {
   //Codigo para cambiar el subtitulo del simulador
   let text = document.querySelector(".text");
@@ -238,6 +235,23 @@ function mostarMovimientos() {
   let tableContainer = document.querySelector(".table-container");
   tableContainer.append(table);
 }
+//
 
-mostarMovimientos();
-mostarSaldo();
+
+//Evento que recibe informacion del mouse provista por el usuario y devuelve el saldo disponible simulado
+let eleccion = "";
+let boton = document.getElementById("btn-saldo");
+boton.addEventListener("click", respuestaClick);
+function respuestaClick(){
+  eleccion = mostarSaldo();
+}
+//Evento que recibe informacion del mouse provista por el usuario y devuelve los movimientos bancarios simulados
+let boton2 = document.getElementById("btn-movimientos");
+boton2.addEventListener("click", respuestaClick2);
+function respuestaClick2(){
+  eleccion = mostarMovimientos();
+}
+
+
+
+
