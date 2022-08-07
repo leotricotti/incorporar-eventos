@@ -115,15 +115,14 @@ operaciones.push(
   trans3
 );
 //Funcion que permite ordenar por fecha de realización a las operaciones simuladas
-let ordenados =
-  operaciones.sort((a, b) => {
-    if (a.fecha > b.fecha) {
-      return 1;
-    }
-    if (a.fecha < b.fecha) {
-      return -1;
-    }
-  });
+let ordenados = operaciones.sort((a, b) => {
+  if (a.fecha > b.fecha) {
+    return 1;
+  }
+  if (a.fecha < b.fecha) {
+    return -1;
+  }
+});
 //Código que crea un array de objetos literales que contiene la simulación de las cuentas bancarias que poseé el usuario y su correspondiente saldo
 const cuentas = [
   {
@@ -197,6 +196,8 @@ function mostarMovimientos() {
   //Codigo para cambiar el subtitulo del simulador
   let text = document.querySelector(".text");
   text.innerText = "Ultimos Movimientos";
+  //Codigo que modifica el HTML al momento de mostrar los movimientos bancarios simulados
+
   //Código que crea el elemento tabla y le asigna sus clases
   let table = document.createElement("table");
   table.className = "table table-hover";
@@ -235,23 +236,50 @@ function mostarMovimientos() {
   let tableContainer = document.querySelector(".table-container");
   tableContainer.append(table);
 }
-//
+//Funcion que modifica el HTML al momento de mostrar los movimientos y los saldos bancarios simulados
+function quitarTexto() {
+  //Codigo que quita texto que no se usa del html
+  let quitarMovimientos = document.querySelector(".quitar-texto");
+  quitarMovimientos.innerText = "";
+  //Codigo que quita texto que no se usa del html
+  let quitarMovimientosDos = document.querySelector(".quitar-texto-dos");
+  quitarMovimientosDos.innerText = "";
+}
+//Funcion que modifica el HTML al momento de mostrar los movimientos bancarios simulados
+function agregarTexto() {
+  //Codigo que agrega texto al html
+  let textoAgregado = document.querySelector(".agregar-texto");
+  textoAgregado.innerText = "Desea realizar otra operacion?";
+}
+//Funcion que modifica el HTML al momento de mostrar los movimientos bancarios simulados
+function modificarOpcion() {
+  //Codigo que cambia texto del html
+  let opcionModificada = document.getElementById("opcion-modificada");
+  opcionModificada.innerHTML =
+    "<p>Si</p> <a href='../../index.html'> <div class='btn-derecha' id='btn-saldo'></div></a></li>";
+  //Codigo que ca,bia texto del html
+  let opcionModificadaDos = document.getElementById("opcion-modificada-dos");
+  opcionModificadaDos.innerHTML =
+    '<p>No</p> <a href="../salir/salir.html" class="link"> <div class="btn-derecha"></div></a>';
+}
 
-
-//Evento que recibe informacion del mouse provista por el usuario y devuelve el saldo disponible simulado
-let eleccion = "";
+//Evento que recibe informacion del mouse provista por el usuario, devuelve el saldo disponible simulado y modifica el html
+// let eleccion = "";
+// let modificacion = "";
 let boton = document.getElementById("btn-saldo");
 boton.addEventListener("click", respuestaClick);
-function respuestaClick(){
-  eleccion = mostarSaldo();
+function respuestaClick() {
+  mostarSaldo();
+  quitarTexto();
+  agregarTexto();
+  modificarOpcion();
 }
 //Evento que recibe informacion del mouse provista por el usuario y devuelve los movimientos bancarios simulados
 let boton2 = document.getElementById("btn-movimientos");
 boton2.addEventListener("click", respuestaClick2);
-function respuestaClick2(){
-  eleccion = mostarMovimientos();
+function respuestaClick2() {
+  mostarMovimientos();
+  quitarTexto();
+  agregarTexto();
+  modificarOpcion();
 }
-
-
-
-
