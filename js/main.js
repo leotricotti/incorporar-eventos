@@ -236,7 +236,7 @@ function mostarMovimientos() {
   let tableContainer = document.querySelector(".table-container");
   tableContainer.append(table);
 }
-//Funcion que modifica el HTML al momento de mostrar los movimientos y los saldos bancarios simulados
+//Funcion que modifica el HTML al momento de devolver la operacion solicitada por el usuario
 function quitarTexto() {
   //Codigo que quita texto que no se usa del html
   let quitarMovimientos = document.querySelector(".quitar-texto");
@@ -245,24 +245,30 @@ function quitarTexto() {
   let quitarMovimientosDos = document.querySelector(".quitar-texto-dos");
   quitarMovimientosDos.innerText = "";
 }
-//Funcion que modifica el HTML al momento de mostrar los movimientos bancarios simulados
+//Funcion que modifica el HTML al momento de devolver la operacion solicitada por el usuario
 function agregarTexto() {
   //Codigo que agrega texto al html
   let textoAgregado = document.querySelector(".agregar-texto");
   textoAgregado.innerText = "Desea realizar otra operacion?";
 }
-//Funcion que modifica el HTML al momento de mostrar los movimientos bancarios simulados
+//Funcion que modifica el HTML al momento de devolver la operacion solicitada por el usuario
 function modificarOpcion() {
   //Codigo que cambia texto del html
   let opcionModificada = document.getElementById("opcion-modificada");
   opcionModificada.innerHTML =
     "<p>Si</p> <a href='../../index.html'> <div class='btn-derecha' id='btn-saldo'></div></a></li>";
-  //Codigo que ca,bia texto del html
+  //Codigo que cambia texto del html
   let opcionModificadaDos = document.getElementById("opcion-modificada-dos");
   opcionModificadaDos.innerHTML =
     '<p>No</p> <a href="../salir/salir.html" class="link"> <div class="btn-derecha"></div></a>';
 }
-
+//Funcion que modifica el HTML al momento de devolver la operacion solicitada por el usuario
+function desactivarBtn(){
+  //Codigo desactiva un boton del html
+  let btnDesactivado = document.getElementById("tecla-disable");
+  btnDesactivado.innerHTML = 
+  '<a href="#" class="link link-disable"> <div class="btn-izquierda btn-disable" id="btn-movimientos"></div></a>'
+}
 //Evento que recibe informacion del mouse provista por el usuario, devuelve el saldo disponible simulado y modifica el html
 // let eleccion = "";
 // let modificacion = "";
@@ -273,8 +279,9 @@ function respuestaClick() {
   quitarTexto();
   agregarTexto();
   modificarOpcion();
+  desactivarBtn();
 }
-//Evento que recibe informacion del mouse provista por el usuario y devuelve los movimientos bancarios simulados
+//Evento que recibe informacion del mouse provista por el usuario, devuelve los movimientos bancarios simulados y modifica el html
 let boton2 = document.getElementById("btn-movimientos");
 boton2.addEventListener("click", respuestaClick2);
 function respuestaClick2() {
@@ -282,4 +289,5 @@ function respuestaClick2() {
   quitarTexto();
   agregarTexto();
   modificarOpcion();
+  desactivarBtn();
 }
