@@ -97,9 +97,9 @@ const trans3 = new Operacion(
   "$ 20.000.00",
   "$ 123.343.00"
 );
-//Creacion del array de objetos que va a  contener a las operaciones bancarias previamente simuladas
+//Creacion del array de objetos que va a contener a las operaciones bancarias previamente simuladas
 const operaciones = [];
-//Funcion que agrega las operaciones simuladas al array contenedor de objetos
+//Codigo que agrega las operaciones simuladas al array contenedor de objetos
 operaciones.push(
   deposito1,
   deposito2,
@@ -168,10 +168,10 @@ function mostarSaldo() {
         </tr>
       </thead>
     `;
-  //Codigo que crea el cuerpo de la tabla
+  //Codigo que crea el cuerpo de la tabla y agrega el divisor entre cabeza y cuerpo
   let tableBody = document.createElement("tbody");
   tableBody.className = "table-group-divider";
-  //Codigo que recorre el array de cuentas creado anteriormente
+  //Codigo que recorre el array de cuentas creado anteriormente y asigna casda elemento a su culumna
   for (const cuenta of cuentas) {
     tableBody.innerHTML += `
         <tr>
@@ -186,22 +186,19 @@ function mostarSaldo() {
   //Codigo que agrega la cabeza y el cuerpo a la tabla creada anteriormente
   table.append(tableHead);
   table.append(tableBody);
-  //Codigo que asigna a la tabla creada un padre
+  //Codigo que asigna a un padre la tabla creada anteriormente
   let tableContainer = document.querySelector(".table-container");
   tableContainer.append(table);
 }
-
-// //Funcion que al consultar los movimientos devuelve una tabla con el saldo de las cuentas bancarias simuladas
+//Funcion que al consultar los movimientos devuelve una tabla con los movimientos de las cuentas bancarias simuladas
 function mostarMovimientos() {
   //Codigo para cambiar el subtitulo del simulador
   let text = document.querySelector(".text");
   text.innerText = "Ultimos Movimientos";
-  //Codigo que modifica el HTML al momento de mostrar los movimientos bancarios simulados
-
   //Código que crea el elemento tabla y le asigna sus clases
   let table = document.createElement("table");
   table.className = "table table-hover";
-  //Código que crea la cabeza de la tabla
+  //Código que crea la cabeza de la tabla 
   let tableHead = document.createElement("thead");
   tableHead.innerHTML = `
     <thead>
@@ -214,7 +211,7 @@ function mostarMovimientos() {
       </tr>
     </thead>
   `;
-  //Codigo que crea el cuerpo de la tabla
+  //Codigo que crea el cuerpo de la tabla y agrega el divisor entre cabeza y cuerpo
   let tableBody = document.createElement("tbody");
   tableBody.className = "table-group-divider";
   //Codigo que recorre el array de operaciones creado anteriormente
@@ -269,9 +266,7 @@ function desactivarBtn(){
   btnDesactivado.innerHTML = 
   '<a href="#" class="link link-disable"> <div class="btn-izquierda btn-disable" id="btn-movimientos"></div></a>'
 }
-//Evento que recibe informacion del mouse provista por el usuario, devuelve el saldo disponible simulado y modifica el html
-// let eleccion = "";
-// let modificacion = "";
+//Evento que recibe informacion del mouse provista por el usuario y ejecuta un afuncion que devuelve el saldo disponible simulado y modifica el html
 let boton = document.getElementById("btn-saldo");
 boton.addEventListener("click", respuestaClick);
 function respuestaClick() {
@@ -281,7 +276,7 @@ function respuestaClick() {
   modificarOpcion();
   desactivarBtn();
 }
-//Evento que recibe informacion del mouse provista por el usuario, devuelve los movimientos bancarios simulados y modifica el html
+//Evento que recibe informacion del mouse provista por el usuario y ejecuta una funcion que devuelve los movimientos bancarios simulados y modifica el html
 let boton2 = document.getElementById("btn-movimientos");
 boton2.addEventListener("click", respuestaClick2);
 function respuestaClick2() {
